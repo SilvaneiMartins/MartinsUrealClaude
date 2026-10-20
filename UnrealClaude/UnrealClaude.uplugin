@@ -1,0 +1,39 @@
+{
+	"FileVersion": 1,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "Martins Unreal Claude",
+	"Description": "Integração da CLI do Claude Code para Unreal Engine 5.8. Obtenha assistência de IA para programação, com contexto da documentação do UE5.8 integrado, diretamente no editor.",
+	"Category": "Editor",
+	"CreatedBy": "Silvanei Martins",
+	"CreatedByURL": ""https://github.com/SilvaneiMartins",
+	"DocsURL": "https://github.com/SilvaneiMartins/MartinsUrealClaude",
+	"MarketplaceURL": "",
+	"SupportURL": "https://github.com/SilvaneiMartins/MartinsUrealClaude/issues",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EnabledByDefault": true,
+	"EngineVersion": "5.8.0",
+	"SupportedTargetPlatforms": [ "Win64", "Linux", "Mac" ],
+	"Modules": [
+		{
+			"Name": "UnrealClaude",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [ "Win64", "Linux", "Mac" ]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EditorScriptingUtilities",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		}
+	]
+}
