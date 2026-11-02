@@ -494,7 +494,7 @@ protected:
 
 		if (!ActorClass)
 		{
-			ActorClass = FindObject<UClass>(nullptr, *ClassPath);
+			ActorClass = FindFirstObject<UClass>(*ClassPath, EFindFirstObjectOptions::NativeFirst);
 		}
 
 		if (!ActorClass)

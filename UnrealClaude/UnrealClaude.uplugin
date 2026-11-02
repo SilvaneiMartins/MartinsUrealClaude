@@ -6,7 +6,7 @@
 	"Description": "Integração da CLI do Claude Code para Unreal Engine 5.8. Obtenha assistência de IA para programação, com contexto da documentação do UE5.8 integrado, diretamente no editor.",
 	"Category": "Editor",
 	"CreatedBy": "Silvanei Martins",
-	"CreatedByURL": ""https://github.com/SilvaneiMartins",
+	"CreatedByURL": "https://github.com/SilvaneiMartins",
 	"DocsURL": "https://github.com/SilvaneiMartins/MartinsUrealClaude",
 	"MarketplaceURL": "",
 	"SupportURL": "https://github.com/SilvaneiMartins/MartinsUrealClaude/issues",

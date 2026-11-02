@@ -1,18 +1,18 @@
 # UnrealClaude
 
-![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.7-313131?style=flat&logo=unrealengine&logoColor=white)
+![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.8-313131?style=flat&logo=unrealengine&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-20-00599C?style=flat&logo=c%2B%2B&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Win64%20%7C%20Linux%20%7C%20Mac-0078D6?style=flat&logo=windows&logoColor=white)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-Integration-D97757?style=flat&logo=anthropic&logoColor=white)
 ![MCP](https://img.shields.io/badge/MCP-20%2B%20Tools-8A2BE2?style=flat)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat)
 
-**Claude Code CLI integration for Unreal Engine 5.7** - Get AI coding assistance with built-in UE5.7 documentation context directly in the editor.
+**Claude Code CLI integration for Unreal Engine 5.8** - Get AI coding assistance with built-in UE5.8 documentation context directly in the editor.
 
 > **Supported Platforms:** Windows (Win64), Linux, and macOS (Apple Silicon). Claude Opus 4.7 and its Claude Code release supported.
 ## Overview
 
-UnrealClaude integrates the [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) directly into the Unreal Engine 5.7 Editor and runs a MCP server for access to other coding agents.
+UnrealClaude integrates the [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) directly into the Unreal Engine 5.8 Editor and runs a MCP server for access to other coding agents.
 
 <p align="center">
   <img width="45%" height="400" alt="Screenshot in editor chat" src="https://github.com/user-attachments/assets/5eff6f0d-8900-485c-b692-141bfb45d397" />
@@ -23,7 +23,7 @@ UnrealClaude integrates the [Claude Code CLI](https://docs.anthropic.com/en/docs
 **Key Features:**
 - **Native Editor Integration** - Chat panel docked in your editor with live streaming responses, tool call grouping, and code block rendering
 - **MCP Server** - 20+ Model Context Protocol tools for actor manipulation, Blueprint editing, level management, materials, input, and more
-- **Dynamic UE 5.7 Context System** - The MCP bridge includes a dynamic context loader that provides accurate UE 5.7 API documentation on demand
+- **Dynamic UE 5.8 Context System** - The MCP bridge includes a dynamic context loader that provides accurate UE 5.8 API documentation on demand
 - **Blueprint Editing** - Create and modify Blueprints, Animation Blueprints, state machines (Few bugs still, don't rely on fully)
 - **Level Management** - Open, create, and manage levels and map templates programmatically
 - **Asset Management** - Search assets, query dependencies and referencers
@@ -97,6 +97,8 @@ This plugin must be built from source for your platform and engine version. No p
 
 Copy the built plugin to either your **project** or **engine** plugins folder.
 
+> **Important:** do **not** clone this repository straight into `YourProject/Plugins/`. The plugin lives in the `UnrealClaude/` subfolder (the one containing `UnrealClaude.uplugin`), and the repo root also holds docs that Unreal must not scan. Copy only that subfolder, so the path is `YourProject/Plugins/UnrealClaude/UnrealClaude.uplugin`. Then regenerate the project files.
+
 **Option A: Project Plugin (Recommended)**
 
 Copy the build output to your project's `Plugins` directory:
@@ -119,7 +121,7 @@ Copy to your engine's plugins folder:
 
 **Windows:**
 ```
-C:\Program Files\Epic Games\UE_5.7\Engine\Plugins\Marketplace\UnrealClaude\
+C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\Marketplace\UnrealClaude\
 ```
 
 **Linux:**
@@ -217,7 +219,7 @@ Explain World Partition and how to set up streaming for an open world.
 
 Write a BlueprintCallable function that spawns particles at a location.
 
-How do I properly use TObjectPtr<> vs raw pointers in UE5.7?
+How do I properly use TObjectPtr<> vs raw pointers in UE5.8?
 ```
 
 ### Input Shortcuts
@@ -269,9 +271,9 @@ The plugin includes a Model Context Protocol (MCP) server with 20+ tools that ex
 
 For full MCP tool documentation with parameters, examples, and API details, see [UnrealClaude's MCP Bridge](https://github.com/Natfii/ue5-mcp-bridge) repository.
 
-#### Dynamic UE 5.7 Context System
+#### Dynamic UE 5.8 Context System
 
-The MCP bridge includes a dynamic context loader that provides accurate UE 5.7 API documentation on demand. Use `unreal_get_ue_context` to query by category (animation, blueprint, slate, actor, assets, replication) or search by keywords. Context status is shown in `unreal_status` output.
+The MCP bridge includes a dynamic context loader that provides accurate UE 5.8 API documentation on demand. Use `unreal_get_ue_context` to query by category (animation, blueprint, slate, actor, assets, replication) or search by keywords. Context status is shown in `unreal_status` output.
 
 ## Configuration
 
@@ -285,7 +287,7 @@ The setting is persisted to `Config/DefaultEditor.ini` under `[/Script/UnrealCla
 
 ### Custom System Prompts
 
-You can extend the built-in UE5.7 context by creating a `CLAUDE.md` file in your project root:
+You can extend the built-in UE5.8 context by creating a `CLAUDE.md` file in your project root:
 
 ```markdown
 # My Project Context
@@ -312,7 +314,7 @@ Config.AllowedTools = { TEXT("Read"), TEXT("Grep"), TEXT("Glob") }; // Read-only
 ## How It Works
 
 1. User enters a prompt in the editor widget
-2. Plugin builds context from UE5.7 knowledge + project information
+2. Plugin builds context from UE5.8 knowledge + project information
 3. Executes: `claude -p --skip-permissions --append-system-prompt "..." "your prompt"`
 4. Claude Code runs with your project as the working directory
 5. Response is captured and displayed in the chat panel
@@ -324,7 +326,7 @@ Config.AllowedTools = { TEXT("Read"), TEXT("Grep"), TEXT("Glob") }; // Read-only
 cd "C:\YourProject"
 claude -p --skip-permissions \
   --allowedTools "Read,Write,Edit,Grep,Glob,Bash" \
-  --append-system-prompt "You are an expert Unreal Engine 5.7 developer..." \
+  --append-system-prompt "You are an expert Unreal Engine 5.8 developer..." \
   "How do I create a custom GameMode?"
 ```
 
@@ -349,7 +351,7 @@ getting injected can cause slowdowns up to 3+ minutes.
 
 ### Plugin doesn't compile
 
-Ensure you're on Unreal Engine 5.7. Supported platforms are Windows (Win64), Linux, and macOS.
+Ensure you're on Unreal Engine 5.8. Supported platforms are Windows (Win64), Linux, and macOS.
 
 ### MCP Server not starting
 
@@ -408,5 +410,5 @@ MIT License - See [LICENSE](UnrealClaude/LICENSE) file.
 
 ## Credits
 
-- Built for Unreal Engine 5.7
+- Built for Unreal Engine 5.8
 - Integrates with [Claude Code](https://claude.ai/code) by Anthropic

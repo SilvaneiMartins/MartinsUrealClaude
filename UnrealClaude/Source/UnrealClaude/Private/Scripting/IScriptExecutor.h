@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ScriptExecutionTypes.h"
+#include "ScriptTypes.h"
 
 /**
  * Interface for script executors

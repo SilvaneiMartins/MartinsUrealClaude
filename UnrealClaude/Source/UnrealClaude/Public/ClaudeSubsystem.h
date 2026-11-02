@@ -14,7 +14,7 @@ class FClaudeCodeRunner;
  */
 struct UNREALCLAUDE_API FClaudePromptOptions
 {
-	/** Include UE5.7 engine context in system prompt */
+	/** Include UE engine context in system prompt */
 	bool bIncludeEngineContext = true;
 
 	/** Include project-specific context in system prompt */
@@ -62,13 +62,13 @@ public:
 	void SendPrompt(
 		const FString& Prompt,
 		FOnClaudeResponse OnComplete,
-		bool bIncludeUE57Context,
+		bool bIncludeEngineContext,
 		FOnClaudeProgress OnProgress,
 		bool bIncludeProjectContext = true
 	);
 
-	/** Get the default UE5.7 system prompt */
-	FString GetUE57SystemPrompt() const;
+	/** Get the default UE system prompt */
+	FString GetEngineSystemPrompt() const;
 
 	/** Get the project context prompt */
 	FString GetProjectContextPrompt() const;

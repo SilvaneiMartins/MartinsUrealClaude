@@ -13,11 +13,11 @@
 
 void SClaudeToolbar::Construct(const FArguments& InArgs)
 {
-	bUE57ContextEnabled = InArgs._bUE57ContextEnabled;
+	bEngineContextEnabled = InArgs._bEngineContextEnabled;
 	bProjectContextEnabled = InArgs._bProjectContextEnabled;
 	bRestoreEnabled = InArgs._bRestoreEnabled;
 	bSelectionMode = InArgs._bSelectionMode;
-	OnUE57ContextChanged = InArgs._OnUE57ContextChanged;
+	OnEngineContextChanged = InArgs._OnEngineContextChanged;
 	OnProjectContextChanged = InArgs._OnProjectContextChanged;
 	OnSelectionModeChanged = InArgs._OnSelectionModeChanged;
 	OnRefreshContext = InArgs._OnRefreshContext;
@@ -49,19 +49,19 @@ void SClaudeToolbar::Construct(const FArguments& InArgs)
 				SNullWidget::NullWidget
 			]
 
-			// UE5.7 Context checkbox
+			// Engine context checkbox
 			+ SHorizontalBox::Slot()
 			.AutoWidth()
 			.VAlign(VAlign_Center)
 			.Padding(8.0f, 0.0f)
 			[
 				SNew(SCheckBox)
-				.IsChecked_Lambda([this]() { return bUE57ContextEnabled.Get() ? ECheckBoxState::Checked : ECheckBoxState::Unchecked; })
-				.OnCheckStateChanged_Lambda([this](ECheckBoxState NewState) { OnUE57ContextChanged.ExecuteIfBound(NewState == ECheckBoxState::Checked); })
-				.ToolTipText(LOCTEXT("UE57ContextTip", "Include Unreal Engine 5.7 context in prompts"))
+				.IsChecked_Lambda([this]() { return bEngineContextEnabled.Get() ? ECheckBoxState::Checked : ECheckBoxState::Unchecked; })
+				.OnCheckStateChanged_Lambda([this](ECheckBoxState NewState) { OnEngineContextChanged.ExecuteIfBound(NewState == ECheckBoxState::Checked); })
+				.ToolTipText(LOCTEXT("EngineContextTip", "Include Unreal Engine context in prompts"))
 				[
 					SNew(STextBlock)
-					.Text(LOCTEXT("UE57Context", "UE5.7 Context"))
+					.Text(LOCTEXT("EngineContext", "UE Context"))
 				]
 			]
 

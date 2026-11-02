@@ -91,7 +91,7 @@ struct UNREALCLAUDE_API FClaudeRequestConfig
 	/** The prompt to send to Claude */
 	FString Prompt;
 
-	/** Optional system prompt to append (for UE5.7 context) */
+	/** Optional system prompt to append (for UE context) */
 	FString SystemPrompt;
 
 	/** Working directory for Claude (usually project root) */

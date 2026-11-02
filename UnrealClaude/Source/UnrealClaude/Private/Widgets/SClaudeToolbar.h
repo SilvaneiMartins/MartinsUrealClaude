@@ -17,16 +17,16 @@ class SClaudeToolbar : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(SClaudeToolbar)
-		: _bUE57ContextEnabled(true)
+		: _bEngineContextEnabled(true)
 		, _bProjectContextEnabled(true)
 		, _bRestoreEnabled(false)
 		, _bSelectionMode(false)
 	{}
-		SLATE_ATTRIBUTE(bool, bUE57ContextEnabled)
+		SLATE_ATTRIBUTE(bool, bEngineContextEnabled)
 		SLATE_ATTRIBUTE(bool, bProjectContextEnabled)
 		SLATE_ATTRIBUTE(bool, bRestoreEnabled)
 		SLATE_ATTRIBUTE(bool, bSelectionMode)
-		SLATE_EVENT(FOnCheckboxChanged, OnUE57ContextChanged)
+		SLATE_EVENT(FOnCheckboxChanged, OnEngineContextChanged)
 		SLATE_EVENT(FOnCheckboxChanged, OnProjectContextChanged)
 		SLATE_EVENT(FOnCheckboxChanged, OnSelectionModeChanged)
 		SLATE_EVENT(FOnToolbarAction, OnRefreshContext)
@@ -38,12 +38,12 @@ public:
 	void Construct(const FArguments& InArgs);
 
 private:
-	TAttribute<bool> bUE57ContextEnabled;
+	TAttribute<bool> bEngineContextEnabled;
 	TAttribute<bool> bProjectContextEnabled;
 	TAttribute<bool> bRestoreEnabled;
 	TAttribute<bool> bSelectionMode;
 
-	FOnCheckboxChanged OnUE57ContextChanged;
+	FOnCheckboxChanged OnEngineContextChanged;
 	FOnCheckboxChanged OnProjectContextChanged;
 	FOnCheckboxChanged OnSelectionModeChanged;
 	FOnToolbarAction OnRefreshContext;

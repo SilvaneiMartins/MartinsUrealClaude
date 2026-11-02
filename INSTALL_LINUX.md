@@ -45,7 +45,7 @@ You can add these to your `~/.bashrc` or create a launch wrapper script.
 
 ## NVIDIA Vulkan in Containers (Distrobox)
 
-If running UE 5.7 inside a Distrobox or similar container, you may need to point Vulkan to the correct NVIDIA ICD:
+If running UE 5.8 inside a Distrobox or similar container, you may need to point Vulkan to the correct NVIDIA ICD:
 
 ```bash
 export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
@@ -62,7 +62,7 @@ vulkaninfo --summary
 Linux users must compile the plugin from source (no prebuilt binaries are provided).
 
 ```bash
-# Replace with your UE 5.7 install path
+# Replace with your UE 5.8 install path
 UE_ROOT=/path/to/UnrealEngine
 
 $UE_ROOT/Engine/Build/BatchFiles/RunUAT.sh BuildPlugin \

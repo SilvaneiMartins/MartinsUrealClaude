@@ -122,7 +122,7 @@ bool FBlueprintEditor::AddFunction(
 		return false;
 	}
 
-	// nullptr cast for UE 5.7 template deduction
+	// nullptr cast for UE 5.x template deduction
 	FBlueprintEditorUtils::AddFunctionGraph(Blueprint, NewGraph, false, static_cast<UFunction*>(nullptr));
 
 	bool bHasEntry = false;
@@ -320,7 +320,7 @@ bool FBlueprintEditor::ParsePinType(
 	if (CleanType.EndsWith(TEXT("*")))
 	{
 		FString ClassName = CleanType.LeftChop(1).TrimEnd();
-		UClass* Class = FindObject<UClass>(nullptr, *ClassName);
+		UClass* Class = FindFirstObject<UClass>(*ClassName, EFindFirstObjectOptions::NativeFirst);
 
 		if (!Class)
 		{
@@ -424,7 +424,7 @@ bool FBlueprintEditor::ParseStructType(
 		return true;
 	}
 
-	UScriptStruct* Struct = FindObject<UScriptStruct>(nullptr, *TypeName);
+	UScriptStruct* Struct = FindFirstObject<UScriptStruct>(*TypeName, EFindFirstObjectOptions::NativeFirst);
 	if (Struct)
 	{
 		OutPinType.PinCategory = UEdGraphSchema_K2::PC_Struct;

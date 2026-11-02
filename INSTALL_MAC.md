@@ -4,7 +4,7 @@ Tested on **Apple Silicon** (M4 Max), **UE 5.7.0**, **macOS 15**.
 
 ## What You Need
 
-- **Unreal Engine 5.7** installed and working
+- **Unreal Engine 5.8** installed and working
 - A **Claude Pro or Max subscription** (the plugin uses your existing Claude account)
 
 ## Step 1: Install Node.js
@@ -79,8 +79,8 @@ cd UnrealClaude/Resources/mcp-bridge
 npm install
 cd ../../..
 
-# Build (replace with your UE 5.7 path)
-/Users/Shared/Epic\ Games/UE_5.7/Engine/Build/BatchFiles/RunUAT.sh BuildPlugin \
+# Build (replace with your UE 5.8 path)
+/Users/Shared/Epic\ Games/UE_5.8/Engine/Build/BatchFiles/RunUAT.sh BuildPlugin \
   -Plugin="$(pwd)/UnrealClaude/UnrealClaude.uplugin" \
   -Package="$(pwd)/BuiltPlugin" \
   -TargetPlatforms=Mac -Rocket
@@ -91,7 +91,7 @@ cp -R BuiltPlugin YourProject/Plugins/UnrealClaude
 
 ## Step 4: Launch
 
-1. Open your project in Unreal Engine 5.7
+1. Open your project in Unreal Engine 5.8
 2. Go to **Tools > Claude Assistant** (or look for it in the menu bar)
 3. The status bar at the bottom should show a green **Ready** indicator
 4. Type a message and press Enter or click Send

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 /**
  * Constants used throughout the UnrealClaude plugin
@@ -10,6 +11,12 @@
  */
 namespace UnrealClaudeConstants
 {
+	/** Engine version the plugin was compiled against, e.g. "5.8". Never hardcode it elsewhere. */
+	inline FString EngineVersionString()
+	{
+		return FString::Printf(TEXT("%d.%d"), ENGINE_MAJOR_VERSION, ENGINE_MINOR_VERSION);
+	}
+
 	namespace Process
 	{
 		/** Buffer size for reading process output */

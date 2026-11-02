@@ -8,15 +8,16 @@
 #include "UnrealClaudeModule.h"
 #include "UnrealClaudeConstants.h"
 
-// Static cache avoids re-allocating this multi-KB prompt on every SendPrompt call
-static const FString CachedUE57SystemPrompt = TEXT(R"(You are an expert Unreal Engine 5.7 developer assistant integrated directly into the UE Editor.
+// Static cache avoids re-allocating this multi-KB prompt on every SendPrompt call.
+// {{UE_VERSION}} is replaced with the engine version this plugin was compiled against.
+static const FString CachedEngineSystemPrompt = FString(TEXT(R"(You are an expert Unreal Engine {{UE_VERSION}} developer assistant integrated directly into the UE Editor.
 
 CONTEXT:
-- You are helping with an Unreal Engine 5.7 project
-- The user is working in the Unreal Editor and expects UE5.7-specific guidance
-- Focus on current UE5.7 APIs, patterns, and best practices
+- You are helping with an Unreal Engine {{UE_VERSION}} project
+- The user is working in the Unreal Editor and expects UE{{UE_VERSION}}-specific guidance
+- Focus on current UE{{UE_VERSION}} APIs, patterns, and best practices
 
-KEY UE5.7 FEATURES TO BE AWARE OF:
+KEY UE{{UE_VERSION}} FEATURES TO BE AWARE OF:
 - Enhanced Nanite and Lumen for next-gen rendering
 - World Partition for open world streaming
 - Mass Entity (experimental) for large-scale simulations
@@ -38,7 +39,7 @@ CODING STANDARDS:
 
 WHEN PROVIDING CODE:
 - Always specify the correct includes
-- Use proper UE5.7 API calls (not deprecated ones)
+- Use proper UE{{UE_VERSION}} API calls (not deprecated ones)
 - Include both .h and .cpp when showing class implementations
 - Explain any engine-specific gotchas or limitations
 
@@ -57,13 +58,13 @@ TOOL USAGE GUIDELINES:
   * task_submit, task_status, task_result, task_list, task_cancel - Async task management
 - Only use execute_script when NO dedicated tool can accomplish the task
 - Use open_level to switch levels instead of console commands (the 'open' command is blocked for security)
-- Use get_ue_context to look up UE5.7 API patterns before writing scripts
+- Use get_ue_context to look up UE{{UE_VERSION}} API patterns before writing scripts
 
 RESPONSE FORMAT:
 - Be concise but thorough
 - Provide code examples when helpful
 - Mention relevant documentation or resources
-- Warn about common pitfalls)");
+- Warn about common pitfalls)")).Replace(TEXT("{{UE_VERSION}}"), *UnrealClaudeConstants::EngineVersionString());
 
 FClaudeCodeSubsystem& FClaudeCodeSubsystem::Get()
 {
@@ -102,13 +103,13 @@ void FClaudeCodeSubsystem::SendPrompt(
 	Config.AttachedImagePaths = Options.AttachedImagePaths;
 
 	// Prompt caching order: static blocks first (highest TTL hit rate), dynamic last.
-	// 1. CachedUE57SystemPrompt — fully static, compiles to a constant string
+	// 1. CachedEngineSystemPrompt — fully static, compiles to a constant string
 	// 2. GetProjectContextPrompt — lightweight 1-line summary (stable between calls)
 	// 3. CustomSystemPrompt (CLAUDE.md) — user-controlled, treat as stable
 	// Conversation history and the user prompt are always appended last (dynamic, not cached).
 	if (Options.bIncludeEngineContext)
 	{
-		Config.SystemPrompt = GetUE57SystemPrompt();
+		Config.SystemPrompt = GetEngineSystemPrompt();
 	}
 
 	if (Options.bIncludeProjectContext)
@@ -141,20 +142,20 @@ void FClaudeCodeSubsystem::SendPrompt(
 void FClaudeCodeSubsystem::SendPrompt(
 	const FString& Prompt,
 	FOnClaudeResponse OnComplete,
-	bool bIncludeUE57Context,
+	bool bIncludeEngineContext,
 	FOnClaudeProgress OnProgress,
 	bool bIncludeProjectContext)
 {
 	FClaudePromptOptions Options;
-	Options.bIncludeEngineContext = bIncludeUE57Context;
+	Options.bIncludeEngineContext = bIncludeEngineContext;
 	Options.bIncludeProjectContext = bIncludeProjectContext;
 	Options.OnProgress = OnProgress;
 	SendPrompt(Prompt, OnComplete, Options);
 }
 
-FString FClaudeCodeSubsystem::GetUE57SystemPrompt() const
+FString FClaudeCodeSubsystem::GetEngineSystemPrompt() const
 {
-	return CachedUE57SystemPrompt;
+	return CachedEngineSystemPrompt;
 }
 
 FString FClaudeCodeSubsystem::GetProjectContextPrompt() const

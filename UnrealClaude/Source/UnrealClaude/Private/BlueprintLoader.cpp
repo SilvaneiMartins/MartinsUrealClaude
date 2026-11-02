@@ -315,7 +315,7 @@ UClass* FBlueprintLoader::FindParentClass(const FString& ParentClassName, FStrin
 
 	if (!ParentClass)
 	{
-		ParentClass = FindObject<UClass>(nullptr, *ParentClassName);
+		ParentClass = FindFirstObject<UClass>(*ParentClassName, EFindFirstObjectOptions::NativeFirst);
 	}
 
 	if (!ParentClass)

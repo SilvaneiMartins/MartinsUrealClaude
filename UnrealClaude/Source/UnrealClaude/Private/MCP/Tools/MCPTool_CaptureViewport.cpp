@@ -95,7 +95,7 @@ FMCPToolResult FMCPTool_CaptureViewport::Execute(const TSharedRef<FJsonObject>& 
 		return FMCPToolResult::Error(TEXT("Failed to set image data."));
 	}
 
-	// UE 5.7 ImageWrapper returns TArray64 directly (not via out-param like 5.6 and earlier)
+	// UE 5.x ImageWrapper returns TArray64 directly (not via out-param like 5.6 and earlier)
 	TArray64<uint8> CompressedData = ImageWrapper->GetCompressed(JPEGQuality);
 	if (CompressedData.Num() == 0)
 	{

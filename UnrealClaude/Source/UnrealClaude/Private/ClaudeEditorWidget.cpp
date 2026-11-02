@@ -336,7 +336,7 @@ void SClaudeEditorWidget::Construct(const FArguments& InArgs)
 	}
 	else
 	{
-		FString WelcomeMessage = TEXT("👋 Welcome to Unreal Claude!\n\nI'm ready to help with your UE5.7 project. Ask me about:\n• C++ code patterns and best practices\n• Blueprint integration\n• Engine systems (Nanite, Lumen, GAS, etc.)\n• Debugging and optimization\n\n");
+		FString WelcomeMessage = TEXT("👋 Welcome to Unreal Claude!\n\nI'm ready to help with your Unreal Engine project. Ask me about:\n• C++ code patterns and best practices\n• Blueprint integration\n• Engine systems (Nanite, Lumen, GAS, etc.)\n• Debugging and optimization\n\n");
 
 		WelcomeMessage += GenerateMCPStatusMessage();
 
@@ -354,11 +354,11 @@ SClaudeEditorWidget::~SClaudeEditorWidget()
 TSharedRef<SWidget> SClaudeEditorWidget::BuildToolbar()
 {
 	return SNew(SClaudeToolbar)
-		.bUE57ContextEnabled_Lambda([this]() { return bIncludeUE57Context; })
+		.bEngineContextEnabled_Lambda([this]() { return bIncludeEngineContext; })
 		.bProjectContextEnabled_Lambda([this]() { return bIncludeProjectContext; })
 		.bRestoreEnabled_Lambda([this]() { return FClaudeCodeSubsystem::Get().HasSavedSession(); })
 		.bSelectionMode_Lambda([this]() { return bSelectionMode; })
-		.OnUE57ContextChanged_Lambda([this](bool bEnabled) { bIncludeUE57Context = bEnabled; })
+		.OnEngineContextChanged_Lambda([this](bool bEnabled) { bIncludeEngineContext = bEnabled; })
 		.OnProjectContextChanged_Lambda([this](bool bEnabled) { bIncludeProjectContext = bEnabled; })
 		.OnSelectionModeChanged_Lambda([this](bool bEnabled) {
 				bSelectionMode = bEnabled;
@@ -606,7 +606,7 @@ void SClaudeEditorWidget::SendMessage()
 	OnComplete.BindSP(this, &SClaudeEditorWidget::OnClaudeResponse);
 
 	FClaudePromptOptions Options;
-	Options.bIncludeEngineContext = bIncludeUE57Context;
+	Options.bIncludeEngineContext = bIncludeEngineContext;
 	Options.bIncludeProjectContext = bIncludeProjectContext;
 	Options.OnProgress.BindSP(this, &SClaudeEditorWidget::OnClaudeProgress);
 	Options.OnStreamEvent.BindSP(this, &SClaudeEditorWidget::OnClaudeStreamEvent);

@@ -77,7 +77,7 @@ FMCPToolResult FMCPTool_AssetSearch::Execute(const TSharedRef<FJsonObject>& Para
 
 			if (!FoundClass)
 			{
-				FoundClass = FindObject<UClass>(nullptr, *ClassFilter);
+				FoundClass = FindFirstObject<UClass>(*ClassFilter, EFindFirstObjectOptions::NativeFirst);
 			}
 
 			if (FoundClass)

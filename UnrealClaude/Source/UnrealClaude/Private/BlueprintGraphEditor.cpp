@@ -32,7 +32,7 @@ UEdGraph* FBlueprintGraphEditor::FindGraph(
 		return nullptr;
 	}
 
-	// UE 5.7 uses TObjectPtr for these arrays — auto& preserves the pointer wrapper
+	// UE 5.x uses TObjectPtr for these arrays — auto& preserves the pointer wrapper
 	auto& Graphs = bFunctionGraph ? Blueprint->FunctionGraphs : Blueprint->UbergraphPages;
 
 	// Empty name means "use the default graph" (first in the array)
@@ -638,7 +638,7 @@ UEdGraphNode* FBlueprintGraphEditor::CreateCallFunctionNode(
 
 	if (!TargetClass.IsEmpty())
 	{
-		FunctionOwner = FindObject<UClass>(nullptr, *TargetClass);
+		FunctionOwner = FindFirstObject<UClass>(*TargetClass, EFindFirstObjectOptions::NativeFirst);
 		if (!FunctionOwner)
 		{
 			// FindObject misses Kismet libraries; resolve by hardcoded name as a fallback

@@ -126,7 +126,7 @@ void FUnrealClaudeModule::StartupModule()
 				];
 		}))
 		.SetDisplayName(LOCTEXT("ClaudeTabTitle", "Claude Assistant"))
-		.SetTooltipText(LOCTEXT("ClaudeTabTooltip", "Open the Claude AI Assistant for UE5.7 development help"))
+		.SetTooltipText(LOCTEXT("ClaudeTabTooltip", "Open the Claude AI Assistant for Unreal Engine development help"))
 		.SetGroup(WorkspaceMenu::GetMenuStructure().GetToolsCategory())
 		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Help"));
 
@@ -191,7 +191,7 @@ void FUnrealClaudeModule::RegisterMenus()
 			FUnrealClaudeCommands::Get().OpenClaudePanel,
 			PluginCommands,
 			LOCTEXT("OpenClaudeMenuItem", "Claude Assistant"),
-			LOCTEXT("OpenClaudeMenuItemTooltip", "Open the Claude AI Assistant for UE5.7 help (Ctrl+Shift+C)"),
+			LOCTEXT("OpenClaudeMenuItemTooltip", "Open the Claude AI Assistant for Unreal Engine help (Ctrl+Shift+C)"),
 			FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Help")
 		);
 
