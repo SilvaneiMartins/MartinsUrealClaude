@@ -2,107 +2,102 @@
 
 ![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.8-313131?style=flat&logo=unrealengine&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-20-00599C?style=flat&logo=c%2B%2B&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Win64%20%7C%20Linux%20%7C%20Mac-0078D6?style=flat&logo=windows&logoColor=white)
-![Claude Code](https://img.shields.io/badge/Claude%20Code-Integration-D97757?style=flat&logo=anthropic&logoColor=white)
-![MCP](https://img.shields.io/badge/MCP-20%2B%20Tools-8A2BE2?style=flat)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+![Plataformas](https://img.shields.io/badge/Plataformas-Win64%20%7C%20Linux%20%7C%20macOS-0078D6?style=flat&logo=windows&logoColor=white)
+![Claude Code](https://img.shields.io/badge/Claude%20Code-Integra%C3%A7%C3%A3o-D97757?style=flat&logo=anthropic&logoColor=white)
+![MCP](https://img.shields.io/badge/MCP-20%2B%20ferramentas-8A2BE2?style=flat)
+![Licença](https://img.shields.io/badge/Licen%C3%A7a-MIT-green?style=flat)
 
-**Claude Code CLI integration for Unreal Engine 5.8** - Get AI coding assistance with built-in UE5.8 documentation context directly in the editor.
+**Integração da CLI do Claude Code com o Unreal Engine 5.8** — tenha assistência de programação com contexto integrado da documentação do UE 5.8 diretamente no editor.
 
-> **Supported Platforms:** Windows (Win64), Linux, and macOS (Apple Silicon). Claude Opus 4.7 and its Claude Code release supported.
-## Overview
+> **Plataformas compatíveis:** Windows (Win64), Linux e macOS (Apple Silicon). Compatível com o Claude Opus 4.7 e a versão correspondente do Claude Code.
 
-UnrealClaude integrates the [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) directly into the Unreal Engine 5.8 Editor and runs a MCP server for access to other coding agents.
+## Visão geral
 
-<p align="center">
-  <img width="45%" height="400" alt="Screenshot in editor chat" src="https://github.com/user-attachments/assets/5eff6f0d-8900-485c-b692-141bfb45d397" />
-  <img width="45%" height="500" alt="Screenshot claude code" src="https://github.com/user-attachments/assets/abcd41ce-7caf-4e7b-87b8-39a406d29cd5" />
-</p>
+O UnrealClaude integra a [CLI do Claude Code](https://docs.anthropic.com/en/docs/claude-code) diretamente ao Editor do Unreal Engine 5.8 e executa um servidor MCP para permitir o acesso de outros agentes de programação.
 
+**Principais recursos:**
 
-**Key Features:**
-- **Native Editor Integration** - Chat panel docked in your editor with live streaming responses, tool call grouping, and code block rendering
-- **MCP Server** - 20+ Model Context Protocol tools for actor manipulation, Blueprint editing, level management, materials, input, and more
-- **Dynamic UE 5.8 Context System** - The MCP bridge includes a dynamic context loader that provides accurate UE 5.8 API documentation on demand
-- **Blueprint Editing** - Create and modify Blueprints, Animation Blueprints, state machines (Few bugs still, don't rely on fully)
-- **Level Management** - Open, create, and manage levels and map templates programmatically
-- **Asset Management** - Search assets, query dependencies and referencers
-- **Async Task Queue** - Long-running operations won't timeout
-- **Script Execution** - Claude can write, compile (via Live Coding), and execute scripts with your permission
-- **Session Persistence** - Conversation history saved across editor sessions
-- **Project-Aware** - Automatically gathers project context (modules, plugins, assets) and is able to see editor viewports
-- **Uses Claude Code Auth** - No separate API key management needed
+- **Integração nativa com o editor** — painel de chat acoplado ao editor, respostas transmitidas em tempo real, chamadas de ferramentas agrupadas e blocos de código formatados.
+- **Servidor MCP** — mais de 20 ferramentas do Model Context Protocol para manipular atores, editar Blueprints, gerenciar níveis, materiais, entradas e muito mais.
+- **Contexto dinâmico do UE 5.8** — a ponte MCP carrega documentação precisa da API do UE 5.8 sob demanda.
+- **Edição de Blueprints** — crie e modifique Blueprints, Animation Blueprints e máquinas de estado. Esse recurso ainda tem limitações; use com cautela.
+- **Gerenciamento de níveis** — abra e crie níveis e modelos de mapas programaticamente.
+- **Gerenciamento de assets** — pesquise assets e consulte dependências e referenciadores.
+- **Fila de tarefas assíncronas** — operações demoradas não expiram por tempo limite.
+- **Execução de scripts** — com sua autorização, o Claude pode escrever, compilar (por meio do Live Coding) e executar scripts.
+- **Persistência de sessões** — o histórico de conversas é preservado entre sessões do editor.
+- **Contexto do projeto** — coleta automaticamente informações do projeto (módulos, plugins e assets) e pode inspecionar as viewports do editor.
+- **Autenticação do Claude Code** — não é necessário gerenciar uma chave de API separadamente.
 
-## Prerequisites
+## Pré-requisitos
 
-### 1. Install Claude Code CLI
+### 1. Instale a CLI do Claude Code
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
-### 2. Authenticate Claude Code
+### 2. Autentique-se no Claude Code
 
 ```bash
 claude auth login
 ```
 
-This will open a browser window to authenticate with your Anthropic account (Claude Pro/Max subscription) or set up API access.
+Uma janela do navegador será aberta para autenticação com sua conta Anthropic (assinatura Claude Pro/Max) ou para configurar o acesso à API.
 
-### 3. Verify Installation
+### 3. Verifique a instalação
 
 ```bash
 claude --version
-claude -p "Hello, can you see me?"
+claude -p "Olá, você consegue me ver?"
 ```
 
-## Installation
+## Instalação
 
-<img width="1222" height="99" alt="Screenshot 2026-02-06 112433" src="https://github.com/user-attachments/assets/61d72364-f7bc-4f34-a768-aedc0f5cea2e" />
+Consulte a categoria **Editor** no navegador de plugins do editor. Talvez seja necessário rolar a lista para encontrá-la caso a busca não a exiba.
 
-(Check the Editor category in the plugin browser. You might need to scroll down for it if search doesn't pick it up)
+### Etapa 1: clone e compile
 
-### Step 1: Clone and Build
+Este plugin precisa ser compilado a partir do código-fonte para sua plataforma e versão do Unreal Engine. Não há binários pré-compilados.
 
-This plugin must be built from source for your platform and engine version. No prebuilt binaries are included.
-
-1. Clone this repository (includes the MCP bridge submodule):
+1. Clone este repositório, incluindo o submódulo da ponte MCP:
    ```bash
-   git clone --recurse-submodules https://github.com/Natfii/UnrealClaude.git
+   git clone --recurse-submodules https://github.com/SilvaneiMartins/MartinsUrealClaude.git
    ```
-   If you already cloned without `--recurse-submodules`, run:
+   Se você já clonou sem `--recurse-submodules`, execute:
    ```bash
-   cd UnrealClaude
+   cd MartinsUrealClaude
    git submodule update --init
    ```
 
-2. Build the plugin:
+2. Compile o plugin:
 
    **Windows:**
    ```bash
-   Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="PATH\TO\UnrealClaude\UnrealClaude\UnrealClaude.uplugin" -Package="OUTPUT\PATH" -TargetPlatforms=Win64
+   Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="PATH\TO\UnrealClaude\UnrealClaude.uplugin" -Package="OUTPUT\PATH" -TargetPlatforms=Win64
    ```
 
    **Linux:**
    ```bash
-   Engine/Build/BatchFiles/RunUAT.sh BuildPlugin -Plugin="/path/to/UnrealClaude/UnrealClaude/UnrealClaude.uplugin" -Package="/output/path" -TargetPlatforms=Linux
+   Engine/Build/BatchFiles/RunUAT.sh BuildPlugin -Plugin="/path/to/UnrealClaude/UnrealClaude.uplugin" -Package="/output/path" -TargetPlatforms=Linux
    ```
 
    **macOS:**
    ```bash
-   Engine/Build/BatchFiles/RunUAT.sh BuildPlugin -Plugin="/path/to/UnrealClaude/UnrealClaude/UnrealClaude.uplugin" -Package="/output/path" -TargetPlatforms=Mac
+   Engine/Build/BatchFiles/RunUAT.sh BuildPlugin -Plugin="/path/to/UnrealClaude/UnrealClaude.uplugin" -Package="/output/path" -TargetPlatforms=Mac
    ```
 
-### Step 2: Install the Plugin
+### Etapa 2: instale o plugin
 
-Copy the built plugin to either your **project** or **engine** plugins folder.
+Copie o plugin compilado para a pasta de plugins do seu projeto ou da sua instalação do Unreal Engine.
 
-> **Important:** do **not** clone this repository straight into `YourProject/Plugins/`. The plugin lives in the `UnrealClaude/` subfolder (the one containing `UnrealClaude.uplugin`), and the repo root also holds docs that Unreal must not scan. Copy only that subfolder, so the path is `YourProject/Plugins/UnrealClaude/UnrealClaude.uplugin`. Then regenerate the project files.
+> **Importante:** não clone este repositório diretamente em `YourProject/Plugins/`. O plugin está na subpasta `UnrealClaude/` (a que contém `UnrealClaude.uplugin`), enquanto a raiz do repositório também contém documentação que o Unreal não deve examinar. Copie somente essa subpasta para `YourProject/Plugins/UnrealClaude/UnrealClaude.uplugin` e regenere os arquivos do projeto.
 
-**Option A: Project Plugin (Recommended)**
+**Opção A: plugin do projeto (recomendado)**
 
-Copy the build output to your project's `Plugins` directory:
-```
+Copie o resultado da compilação para a pasta `Plugins` do projeto:
+
+```text
 YourProject/
 ├── Content/
 ├── Source/
@@ -115,277 +110,259 @@ YourProject/
         └── UnrealClaude.uplugin
 ```
 
-**Option B: Engine Plugin (All Projects)**
+**Opção B: plugin do Unreal Engine (todos os projetos)**
 
-Copy to your engine's plugins folder:
+Copie o plugin para a pasta de plugins da instalação do Unreal Engine:
 
 **Windows:**
-```
+```text
 C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\Marketplace\UnrealClaude\
 ```
 
 **Linux:**
-```
+```text
 /path/to/UnrealEngine/Engine/Plugins/Marketplace/UnrealClaude/
 ```
 
-### Step 3: Install MCP Bridge Dependencies
+### Etapa 3: instale as dependências da ponte MCP
 
-Required for Blueprint tools and editor integration:
+Esta etapa é necessária para as ferramentas de Blueprint e a integração com o editor:
+
 ```bash
 cd <PluginPath>/UnrealClaude/Resources/mcp-bridge
 npm install
 ```
 
-### Step 4: Launch
+### Etapa 4: inicie o editor
 
-Launch the editor - the plugin will load automatically.
+Inicie o editor. O plugin será carregado automaticamente.
 
+### Etapa 5 (opcional): use com a CLI ou o aplicativo do Claude
 
-### Step 5: (Optional) Use with Claude Code CLI or Claude App
+1. Inicie o Claude Code ou a CLI do Claude e aponte-o para a instalação do UnrealClaude.
+2. Depois de confirmar que está tudo pronto, reinicie somente o Claude Code ou a CLI para que as alterações sejam aplicadas.
 
-1. **Launch Claude Code or Claude CLI** and point it to your UnrealClaude install. 
+## Início rápido no macOS (Apple Silicon)
 
-<img width="1097" height="154" alt="image" src="https://github.com/user-attachments/assets/05a88a96-abce-4ebb-93ef-1ea405e5f28a" />
+Para obter instruções completas, consulte [INSTALL_MAC.md](INSTALL_MAC.md).
 
-
-2. After the all clear, **restart just Claude Code / CLI for changes to save.** 
-
-<p align="center">
-  <img height="200" alt="Screenshot 1" src="https://github.com/user-attachments/assets/251f1580-aec2-415c-abab-6a2e50662a8e" />
-  <img height="200" alt="Screenshot 2" src="https://github.com/user-attachments/assets/ffda3096-d808-41e7-85ba-176dfe6385d8" />
-</p>
-
-
-
-## macOS Quick Start (Apple Silicon)
-
-For full details, see [INSTALL_MAC.md](INSTALL_MAC.md).
-
-1. **Install Node.js and Claude Code CLI:**
+1. **Instale o Node.js e a CLI do Claude Code:**
    ```bash
    brew install node
    npm install -g @anthropic-ai/claude-code
    claude
    ```
-2. **Install the plugin** into your project's `Plugins/` directory
-3. **Install MCP bridge dependencies:**
+2. **Instale o plugin** na pasta `Plugins/` do projeto.
+3. **Instale as dependências da ponte MCP:**
    ```bash
    cd YourProject/Plugins/UnrealClaude/Resources/mcp-bridge
    npm install
    ```
-4. **Launch** the editor and open **Tools > Claude Assistant**
+4. **Inicie o editor** e abra **Tools > Claude Assistant**.
 
-## Linux Quick Start (Rocky/Fedora)
+## Início rápido no Linux (Rocky/Fedora)
 
-For full details, see [INSTALL_LINUX.md](INSTALL_LINUX.md).
+Para obter instruções completas, consulte [INSTALL_LINUX.md](INSTALL_LINUX.md).
 
-1. **Install Libraries:**
+1. **Instale as bibliotecas:**
    ```bash
    sudo dnf install -y nss nspr mesa-libgbm libXcomposite libXdamage libXrandr alsa-lib pciutils-libs libXcursor atk at-spi2-atk pango cairo gdk-pixbuf2 gtk3
    ```
-2. **Install Clipboard Support:**
+2. **Instale o suporte à área de transferência:**
    ```bash
    sudo dnf install -y wl-clipboard   # Wayland
-   sudo dnf install -y xclip          # X11 fallback
+   sudo dnf install -y xclip          # alternativa para X11
    ```
-3. **Setup Wayland:**
+3. **Configure o Wayland:**
    ```bash
    export SDL_VIDEODRIVER=wayland
    export UE_Linux_EnableWaylandNative=1
    ```
-4. **Build and Launch:**
+4. **Compile e inicie o editor:**
    ```bash
    ./UnrealEditor -vulkan
    ```
 
-## Usage
+## Uso
 
-### Opening the Claude Panel
+### Abrir o painel do Claude
 
- Menu → Tools → Claude Assistant
+No menu do editor, selecione **Tools → Claude Assistant**.
 
-<img width="580" height="340" alt="{778C8E0B-C354-4AD1-BBFF-B514A4D5FC16}" src="https://github.com/user-attachments/assets/2087ef40-9791-4ad9-933b-2c64370344e8" />
+### Exemplos de solicitações
 
+```text
+Como criar um Actor Component personalizado em C++?
 
-### Example Prompts
+Qual é a melhor maneira de implementar um sistema de vida usando o GAS?
 
-```
-How do I create a custom Actor Component in C++?
+Explique o World Partition e como configurar o streaming para um mundo aberto.
 
-What's the best way to implement a health system using GAS?
+Escreva uma função BlueprintCallable que gere partículas em uma posição.
 
-Explain World Partition and how to set up streaming for an open world.
-
-Write a BlueprintCallable function that spawns particles at a location.
-
-How do I properly use TObjectPtr<> vs raw pointers in UE5.8?
+Como usar corretamente TObjectPtr<> em vez de ponteiros brutos no UE 5.8?
 ```
 
-### Input Shortcuts
+### Atalhos de entrada
 
-| Shortcut | Action |
-|----------|--------|
-| `Enter` | Send message |
-| `Shift+Enter` | New line in input |
-| `Escape` | Cancel current request |
+| Atalho | Ação |
+|--------|------|
+| `Enter` | Envia a mensagem |
+| `Shift+Enter` | Insere uma nova linha |
+| `Escape` | Cancela a solicitação atual |
 
-## Features
+## Recursos
 
-### Session Persistence
+### Persistência de sessões
 
-Conversations are automatically saved to your project's `Saved/UnrealClaude/` directory and restored when you reopen the editor. The plugin maintains conversation context across sessions.
+As conversas são salvas automaticamente na pasta `Saved/UnrealClaude/` do projeto e restauradas quando o editor é aberto novamente. O contexto da conversa é mantido entre sessões.
 
-### Project Context
+### Contexto do projeto
 
-UnrealClaude automatically gathers information about your project:
-- Source modules and their dependencies
-- Enabled plugins
-- Project settings
-- Recent assets
-- Custom CLAUDE.md instructions
+O UnrealClaude coleta automaticamente informações sobre:
 
-### Scripting
+- Módulos de código-fonte e suas dependências
+- Plugins habilitados
+- Configurações do projeto
+- Assets recentes
+- Instruções personalizadas em `CLAUDE.md`
 
-<img width="707" height="542" alt="{AB6AC101-4A4C-4607-BFB6-187D49F5E65B}" src="https://github.com/user-attachments/assets/e0c2e398-8fcd-4ac6-ade7-d50870215ec1" />
+### Execução de scripts
 
-Claude can write, compile (C++ via Live Coding), and run Python / Console / Editor Utility scripts — each gated by a **permission dialog** (deny-by-default; see *Auto-approve script execution* under [Configuration](#configuration)).
+O Claude pode escrever e executar scripts Python, comandos de console e scripts do Editor Utility, além de compilar C++ por meio do Live Coding. Cada execução depende de uma **caixa de diálogo de permissão**, negada por padrão. Consulte **Aprovação automática da execução de scripts** em [Configuração](#configuração).
 
-> **Note — scripting & console tools are hidden by default.** The MCP bridge does **not** advertise `execute_script`, `run_console_command`, `cleanup_scripts`, or `get_script_history` to the model. They're a deliberate power-user fallback, kept off in releases so the model uses the structured editor tools (and to keep the tool list small). They remain *callable by exact name*, and every execution still passes through the C++ permission dialog. To surface them to the model, move the names out of `HIDDEN_TOOL_NAMES` in `Resources/mcp-bridge/tool-router.js`. **`run_console_command` can reach the Python interpreter (`py …`) — treat un-hiding it as enabling arbitrary code execution; keep it to trusted setups only.**
+> **Observação — ferramentas de script e console ficam ocultas por padrão.** A ponte MCP não anuncia ao modelo `execute_script`, `run_console_command`, `cleanup_scripts` nem `get_script_history`. Essas ferramentas avançadas ficam desativadas nas versões publicadas para que o modelo use as ferramentas estruturadas do editor e para manter a lista de ferramentas enxuta. Ainda é possível chamá-las pelo nome exato, e toda execução continua sujeita à caixa de diálogo de permissão do C++. Para disponibilizá-las ao modelo, remova esses nomes de `HIDDEN_TOOL_NAMES` em `Resources/mcp-bridge/tool-router.js`. **`run_console_command` pode acessar o interpretador Python (`py …`); removê-la da lista de ocultas permite a execução de código arbitrário. Habilite-a somente em ambientes confiáveis.**
 
-### MCP Server
+### Servidor MCP
 
-The plugin includes a Model Context Protocol (MCP) server with 20+ tools that expose editor functionality to Claude and external tools. The MCP server runs on port 3000 by default and starts automatically when the editor loads.
+O plugin inclui um servidor do Model Context Protocol (MCP) com mais de 20 ferramentas que expõem funcionalidades do editor ao Claude e a ferramentas externas. Por padrão, o servidor MCP usa a porta 3000 e é iniciado automaticamente quando o editor é carregado.
 
-**Tool Categories:**
-- **Actor Tools** - Spawn, move, delete, inspect, and set properties on actors
-- **Level Management** - Open levels, create new levels from templates, list available templates
-- **Blueprint Tools** - Create and modify Blueprints (variables, functions, nodes, pins)
-- **Animation Blueprint Tools** - Full state machine editing (states, transitions, conditions, batch operations)
-- **Asset Tools** - Search assets, query dependencies and referencers with pagination
-- **Character Tools** - Character configuration, movement settings, and data queries
-- **Material Tools** - Material and material instance operations
-- **Enhanced Input Tools** - Input action and mapping context management
-- **Utility Tools** - Console commands, output log, viewport capture, script execution
-- **Async Task Queue** - Background execution for long-running operations
+**Categorias de ferramentas:**
 
-For full MCP tool documentation with parameters, examples, and API details, see [UnrealClaude's MCP Bridge](https://github.com/Natfii/ue5-mcp-bridge) repository.
+- **Atores** — cria, move, exclui, inspeciona e altera propriedades de atores.
+- **Gerenciamento de níveis** — abre níveis, cria níveis a partir de modelos e lista os modelos disponíveis.
+- **Blueprints** — cria e modifica Blueprints, variáveis, funções, nós e pinos.
+- **Animation Blueprints** — edita máquinas de estado, estados, transições, condições e operações em lote.
+- **Assets** — pesquisa assets e consulta dependências e referenciadores com paginação.
+- **Personagens** — configura personagens, ajustes de movimento e consultas de dados.
+- **Materiais** — opera em materiais e instâncias de materiais.
+- **Enhanced Input** — gerencia ações de entrada e contextos de mapeamento.
+- **Utilitários** — oferece comandos de console, Output Log, captura da viewport e execução de scripts.
+- **Fila de tarefas assíncronas** — executa em segundo plano operações demoradas.
 
-#### Dynamic UE 5.8 Context System
+Para consultar a documentação completa das ferramentas MCP, incluindo parâmetros, exemplos e detalhes da API, acesse o repositório da [ponte MCP do UnrealClaude](https://github.com/SilvaneiMartins/ue5-mcp-bridge-martins).
 
-The MCP bridge includes a dynamic context loader that provides accurate UE 5.8 API documentation on demand. Use `unreal_get_ue_context` to query by category (animation, blueprint, slate, actor, assets, replication) or search by keywords. Context status is shown in `unreal_status` output.
+#### Sistema de contexto dinâmico do UE 5.8
 
-## Configuration
+A ponte MCP inclui um carregador de contexto dinâmico com documentação precisa da API do UE 5.8 sob demanda. Use `unreal_get_ue_context` para consultar categorias (como animação, Blueprint, Slate, ator, assets e replicação) ou pesquisar por palavras-chave. O estado do contexto aparece na saída de `unreal_status`.
 
-### Project Settings
+## Configuração
 
-In **Project Settings → Plugins → Unreal Claude**:
+### Configurações do projeto
 
-- **Auto-approve script execution** (default: OFF) — when ON, every Python / C++ / Console / Editor Utility script triggered through the MCP bridge or the in-editor chat runs immediately without showing the permission dialog. Each auto-approved script writes a `LogUnrealClaude` Log entry with its type and description so the audit trail is preserved. Designed for trusted MCP-driven / agent-driven workflows where the per-script confirmation becomes dominant friction; **only enable on machines and projects where the connected client is trusted**.
+Em **Project Settings → Plugins → Unreal Claude**:
 
-The setting is persisted to `Config/DefaultEditor.ini` under `[/Script/UnrealClaude.UnrealClaudeSettings]`.
+- **Aprovação automática da execução de scripts** (desativada por padrão) — quando ativada, todo script Python, C++, de console ou Editor Utility iniciado pela ponte MCP ou pelo chat integrado é executado sem exibir a caixa de diálogo de permissão. Cada execução aprovada automaticamente gera uma entrada `LogUnrealClaude` com seu tipo e descrição para manter o registro de auditoria. Esse recurso foi pensado para fluxos de trabalho confiáveis com MCP ou agentes, nos quais a confirmação de cada script gera atrito. **Ative-o somente em máquinas e projetos cujos clientes conectados sejam confiáveis.**
 
-### Custom System Prompts
+A configuração é salva em `Config/DefaultEditor.ini`, na seção `[/Script/UnrealClaude.UnrealClaudeSettings]`.
 
-You can extend the built-in UE5.8 context by creating a `CLAUDE.md` file in your project root:
+### Prompts de sistema personalizados
+
+Você pode ampliar o contexto integrado do UE 5.8 criando um arquivo `CLAUDE.md` na raiz do projeto:
 
 ```markdown
-# My Project Context
+# Contexto do meu projeto
 
-## Architecture
-- This is a multiplayer survival game
-- Using Dedicated Server model
-- GAS for all abilities
+## Arquitetura
+- Este é um jogo de sobrevivência multiplayer
+- Usa o modelo Dedicated Server
+- Usa GAS para todas as habilidades
 
-## Coding Standards
-- Always use UPROPERTY for Blueprint access
-- Prefix interfaces with I (IInteractable)
-- Use GameplayTags for ability identification
+## Padrões de código
+- Sempre use UPROPERTY para acesso pelo Blueprint
+- Prefixe interfaces com I (IInteractable)
+- Use GameplayTags para identificar habilidades
 ```
 
-### Allowed Tools
+### Ferramentas permitidas
 
-By default, the plugin runs Claude with these tools: `Read`, `Write`, `Edit`, `Grep`, `Glob`, `Bash`. You can modify this in `ClaudeSubsystem.cpp`:
+Por padrão, o plugin permite que o Claude use: `Read`, `Write`, `Edit`, `Grep`, `Glob` e `Bash`. Você pode alterar essa lista em `ClaudeSubsystem.cpp`:
 
 ```cpp
-Config.AllowedTools = { TEXT("Read"), TEXT("Grep"), TEXT("Glob") }; // Read-only
+Config.AllowedTools = { TEXT("Read"), TEXT("Grep"), TEXT("Glob") }; // Somente leitura
 ```
 
-## How It Works
+## Como funciona
 
-1. User enters a prompt in the editor widget
-2. Plugin builds context from UE5.8 knowledge + project information
-3. Executes: `claude -p --skip-permissions --append-system-prompt "..." "your prompt"`
-4. Claude Code runs with your project as the working directory
-5. Response is captured and displayed in the chat panel
-6. Conversation is persisted for future sessions
+1. O usuário envia uma solicitação pelo widget do editor.
+2. O plugin reúne o contexto do UE 5.8 e as informações do projeto.
+3. O plugin executa `claude -p --skip-permissions --append-system-prompt "..." "sua solicitação"`.
+4. O Claude Code é executado com a pasta do projeto como diretório de trabalho.
+5. A resposta é capturada e exibida no painel de chat.
+6. A conversa é salva para sessões futuras.
 
-### Command Line Equivalent
+### Comando equivalente no terminal
 
 ```bash
 cd "C:\YourProject"
 claude -p --skip-permissions \
   --allowedTools "Read,Write,Edit,Grep,Glob,Bash" \
-  --append-system-prompt "You are an expert Unreal Engine 5.8 developer..." \
-  "How do I create a custom GameMode?"
+  --append-system-prompt "Você é especialista em desenvolvimento com Unreal Engine 5.8..." \
+  "Como criar um GameMode personalizado?"
 ```
 
-## Troubleshooting
+## Solução de problemas
 
-### "Claude CLI not found"
+### “Claude CLI não encontrada”
 
-1. Verify Claude is installed: `claude --version`
-2. Check it's in your PATH: `where claude`
-3. Restart Unreal Editor after installation
+1. Verifique se o Claude está instalado: `claude --version`
+2. Confira se ele está no `PATH`: `where claude`
+3. Reinicie o Unreal Editor após a instalação.
 
-### "Authentication required"
+### “Autenticação necessária”
 
-Run `claude auth login` in a terminal to authenticate.
+Execute `claude auth login` em um terminal para se autenticar.
 
-### Responses are slow
+### Respostas lentas
 
-Claude Code executes in your project directory and may read files for context. Large projects may have slower initial responses.
+O Claude Code é executado na pasta do projeto e pode ler arquivos para obter contexto. Projetos grandes podem demorar mais na primeira resposta.
 
-You might also have too many global Claude Code plugins enabled (i.e. Superpowers, ralp-loop, context7). The context for those plugins 
-getting injected can cause slowdowns up to 3+ minutes. 
+A quantidade de plugins globais do Claude Code também pode afetar o desempenho (por exemplo, Superpowers, ralp-loop e context7). O contexto injetado por esses plugins pode aumentar o tempo de resposta em mais de três minutos.
 
-### Plugin doesn't compile
+### O plugin não compila
 
-Ensure you're on Unreal Engine 5.8. Supported platforms are Windows (Win64), Linux, and macOS.
+Verifique se você está usando o Unreal Engine 5.8. As plataformas compatíveis são Windows (Win64), Linux e macOS.
 
-### MCP Server not starting
+### O servidor MCP não inicia
 
-Check if port 3000 is available. The MCP server logs to `LogUnrealClaude`.
+Verifique se a porta 3000 está disponível. O servidor MCP registra mensagens em `LogUnrealClaude`.
 
-### MCP tools not available / Blueprint tools not working
+### Ferramentas MCP indisponíveis ou ferramentas de Blueprint sem funcionar
 
-If Claude says the MCP tools are in its instructions but not in its function list:
+Se o Claude informar que as ferramentas MCP estão nas instruções, mas não aparecerem na lista de funções:
 
-1. **Install MCP bridge dependencies**: The most common cause is missing npm packages:
+1. **Instale as dependências da ponte MCP.** A causa mais comum é a ausência dos pacotes do npm:
    ```bash
    cd YourProject/Plugins/UnrealClaude/Resources/mcp-bridge
    npm install
    ```
-
-2. **Verify the HTTP server is running**: With the editor open, test:
+2. **Verifique se o servidor HTTP está em execução.** Com o editor aberto, teste:
    ```bash
    curl http://localhost:3000/mcp/status
    ```
-   You should see a JSON response with project info.
+   A resposta deve conter um JSON com informações do projeto.
+3. **Confira o Output Log.** Procure mensagens `LogUnrealClaude`:
+   - `MCP Server started on http://localhost:3000` — o servidor está em execução.
+   - `Registered X MCP tools` — as ferramentas foram carregadas.
+4. **Reinicie o editor** após instalar as dependências do npm.
 
-3. **Check the Output Log**: Look for `LogUnrealClaude` messages:
-   - `MCP Server started on http://localhost:3000` - Server is running
-   - `Registered X MCP tools` - Tools are loaded
+### Solicitação travada
 
-4. **Restart the editor**: After installing npm dependencies, restart Unreal Editor.
+O novo watchdog deve alertar sobre solicitações travadas após 60 segundos. Verifique se todos os arquivos estão no disco e desative serviços de sincronização, como OneDrive e Dropbox, para os arquivos do projeto.
 
-### Request Hangs 
+### Depuração da ponte MCP
 
-New watchdog should warn about hung requests (60s). Make sure all files are on disk (DISABLE OneDrive, DropBox, etc.)
-
-### Debugging the MCP Bridge
-
-The MCP bridge is also available as a [standalone repository](https://github.com/Natfii/ue5-mcp-bridge) with its own Vitest test suite. If you're experiencing bridge-level issues (tool listing, parameter translation, context injection), you can run the bridge tests independently:
+A ponte MCP também está disponível como [repositório independente](https://github.com/SilvaneiMartins/ue5-mcp-bridge-martins) e possui uma suíte de testes Vitest. Para investigar problemas na ponte (lista de ferramentas, tradução de parâmetros ou injeção de contexto), execute os testes separadamente:
 
 ```bash
 cd path/to/ue5-mcp-bridge
@@ -393,22 +370,21 @@ npm install
 npm test
 ```
 
-This tests the bridge without requiring a running Unreal Editor.
+Os testes verificam a ponte sem exigir que o Unreal Editor esteja em execução.
 
+## Contribuição
 
-## Contributing
+Sinta-se à vontade para criar um fork e adaptar o projeto às suas necessidades. Algumas áreas que podem ser aprimoradas:
 
-Feel free to fork for your own needs! Possible areas for improvement:
+- [x] Suporte a Linux (agradecimentos a [@bearyjd](https://github.com/bearyjd))
+- [x] Suporte a macOS (agradecimentos a [@lateralsummer](https://github.com/lateralsummer))
+- [ ] Ferramentas MCP adicionais (as ferramentas atuais precisam ser refatoradas; novas ferramentas não são prioridade no momento)
 
-- [x] Linux support (thanks [@bearyjd](https://github.com/bearyjd))
-- [x] Mac support (thanks [@lateralsummer](https://github.com/lateralsummer))
-- [ ] Additional MCP tools (current tools need refractoring, no new ones for now)
+## Licença
 
-## License
+Licença MIT — consulte o arquivo [LICENSE](UnrealClaude/LICENSE).
 
-MIT License - See [LICENSE](UnrealClaude/LICENSE) file.
+## Créditos
 
-## Credits
-
-- Built for Unreal Engine 5.8
-- Integrates with [Claude Code](https://claude.ai/code) by Anthropic
+- Desenvolvido para o Unreal Engine 5.8.
+- Integra-se ao [Claude Code](https://claude.ai/code), da Anthropic.

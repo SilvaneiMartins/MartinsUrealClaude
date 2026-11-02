@@ -44,7 +44,7 @@ git submodule update --init
 Confira se a pasta `UnrealClaude/Resources/mcp-bridge` **não está vazia**. Se estiver, o submódulo não foi baixado; clone a ponte manualmente:
 
 ```bash
-git clone https://github.com/Natfii/ue5-mcp-bridge.git UnrealClaude/Resources/mcp-bridge
+git clone https://github.com/SilvaneiMartins/ue5-mcp-bridge-martins.git UnrealClaude/Resources/mcp-bridge
 ```
 
 ## 4. Copiar o plugin para o projeto

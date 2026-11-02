@@ -103,11 +103,11 @@ Automation RunTests UnrealClaude
 
 ### MCP Bridge (Git Submodule)
 
-`Resources/mcp-bridge/` is a **git submodule** pointing to [`Natfii/ue5-mcp-bridge`](https://github.com/Natfii/ue5-mcp-bridge).
+`Resources/mcp-bridge/` is a **git submodule** pointing to [`SilvaneiMartins/ue5-mcp-bridge-martins`](https://github.com/SilvaneiMartins/ue5-mcp-bridge-martins).
 
 **Fresh clone setup:**
 ```bash
-git clone --recurse-submodules https://github.com/Natfii/UnrealClaude.git
+git clone --recurse-submodules https://github.com/SilvaneiMartins/MartinsUrealClaude.git
 # Or if already cloned without --recurse-submodules:
 git submodule update --init
 cd Resources/mcp-bridge && npm install
