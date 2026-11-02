@@ -67,9 +67,9 @@ CityMartins/
 Em PowerShell, a partir da pasta do repositório clonado:
 
 ```powershell
-$dest = "C:\Projetos\CityMartins\Plugins\UnrealClaude"
+$dest = "C:\Projetos\CityMartins\Plugins\MartinsUnrealClaude"
 New-Item -ItemType Directory -Force "C:\Projetos\CityMartins\Plugins" | Out-Null
-Copy-Item ".\UnrealClaude" $dest -Recurse -Force
+Copy-Item ".\MartinsUnrealClaude" $dest -Recurse -Force
 ```
 
 Se o caminho ficar `Plugins/UnrealClaude/UnrealClaude/UnrealClaude.uplugin` (pasta repetida), está errado: mova o conteúdo um nível acima.

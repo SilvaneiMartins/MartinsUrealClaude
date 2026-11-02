@@ -160,6 +160,16 @@ Para obter instruções completas, consulte [INSTALL_MAC.md](INSTALL_MAC.md).
    ```
 4. **Inicie o editor** e abra **Tools > Claude Assistant**.
 
+## Início rápido no Windows
+
+Para obter instruções completas de instalação e compilação, consulte [INSTALL_WINDOWS.md](INSTALL_WINDOWS.md).
+
+1. **Instale os pré-requisitos:** Unreal Engine 5.8, Visual Studio 2022 com as ferramentas C++, Git para Windows e Node.js 18 ou superior.
+2. **Clone o repositório** com `git clone --recurse-submodules`.
+3. **Instale as dependências MCP** com `npm install` em `UnrealClaude\Resources\mcp-bridge`.
+4. **Copie a pasta `UnrealClaude`** para a pasta `Plugins` do seu projeto, gere os arquivos do Visual Studio e compile como **Development Editor / Win64**.
+5. **Abra o painel** no editor em **Tools > Claude Assistant**.
+
 ## Início rápido no Linux (Rocky/Fedora)
 
 Para obter instruções completas, consulte [INSTALL_LINUX.md](INSTALL_LINUX.md).
